@@ -1,3 +1,5 @@
+
+
 import tkinter as tk
 from tkinter import *
 import tkinter.filedialog
@@ -24,16 +26,26 @@ class ParentWindow(Frame):
         self.destination_dir_entry = Entry(self, width=50)
         self.destination_dir_entry.grid(row=1, column=1, padx=(0, 10), pady=(15, 10))
 
-        self.desDir_btn = Button(self, text="Select Destination", width=20, command=self.transferFiles)
+        self.desDir_btn = Button(self, text="Select Destination", width=20, command=self.chooseDestination)
         self.desDir_btn.grid(row=1, column=2, pady=(15, 10))
+
+        self.transfer_btn = Button(self, text="Transfer Files", width=20, command=self.chooseFiles)
+        self.transfer_btn.grid(row=2, column=0, columnspan=3, pady=(15, 10))
 
     def sourceDir(self):
         selectSourceDir = tkinter.filedialog.askdirectory()
         self.source_dir_entry.delete(0, END)
         self.source_dir_entry.insert(0, selectSourceDir)
 
-    def transferFiles(self):
+    def chooseDestination(self):
+        selectDestinationDir = tkinter.filedialog.askdirectory()
+        self.destination_dir_entry.delete(0, END)
+        self.destination_dir_entry.insert(0, selectDestinationDir)
+
+    def chooseFiles(self):
         source_directory = self.source_dir_entry.get()
+        destination_directory = self.destination_dir_entry.get()
+
         recently_modified_files = self.find_recently_modified_files(source_directory)
 
         if recently_modified_files:
@@ -41,6 +53,7 @@ class ParentWindow(Frame):
             for file_path in recently_modified_files:
                 print(file_path)
             # Add code here to transfer files to the destination directory
+            print(f"Transferring files to: {destination_directory}")
 
         else:
             print("No recently modified/created files within the last 24 hours.")
@@ -67,6 +80,5 @@ if __name__ == "__main__":
     App = ParentWindow(root)
     App.grid(row=0, column=0)
     root.mainloop()
-
 
 
