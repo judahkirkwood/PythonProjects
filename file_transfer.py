@@ -5,6 +5,7 @@ from tkinter import *
 import tkinter.filedialog
 from datetime import datetime, timedelta
 import os
+import shutil  # Import shutil for file operations
 
 class ParentWindow(Frame):
     def __init__(self, master):
@@ -52,8 +53,9 @@ class ParentWindow(Frame):
             print("Recently modified/created files:")
             for file_path in recently_modified_files:
                 print(file_path)
-            # Add code here to transfer files to the destination directory
-            print(f"Transferring files to: {destination_directory}")
+                # Move the file to the destination directory
+                shutil.move(file_path, destination_directory)
+                print(f"File transferred to: {destination_directory}")
 
         else:
             print("No recently modified/created files within the last 24 hours.")
@@ -80,5 +82,4 @@ if __name__ == "__main__":
     App = ParentWindow(root)
     App.grid(row=0, column=0)
     root.mainloop()
-
 
