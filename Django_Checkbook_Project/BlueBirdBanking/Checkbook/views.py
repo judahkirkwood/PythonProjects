@@ -39,7 +39,7 @@ def balance(request, pk):
             current_total += t.amount # If deposit add amount to balance
             table_contents.update({t: current_total}) # Add transaction and total to the dictionary
         else:
-            current_total += f.amount # If withdrawal subtract amount from balance
+            current_total -= t.amount # If withdrawal subtract amount from balance
             table_contents.update({t: current_total}) # Add transaction and total to the dictionary
     # Pass account, account total balance, and transaction information to the template
     content = {'account': account, 'table_contents': table_contents, 'balance': current_total}
