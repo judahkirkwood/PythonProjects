@@ -1,6 +1,6 @@
 # Python Projects
 
-This repository contains three Python projects: Phonebook, DjangoUniversity, and Django Checkbook.
+This repository contains examples of some of the Python projects I have worked on: Phonebook, DjangoUniversity, and Django Checkbook.
 
 ## Projects
 
