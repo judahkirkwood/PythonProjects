@@ -6,7 +6,6 @@ class User:
     account = 0
 
 
-
     #Define the methods of the class
     def login(self):
         entry_email = input("Enter your email: ")
